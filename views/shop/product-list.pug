@@ -1,0 +1,30 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/shop.css")
+
+block content
+    main
+        .shopgrid
+            if products.length > 0
+                each product in products
+                    article.shopgrid__item
+                        h3 #{product.pname}
+                        figure.shopitem__figure
+                            img.shopitem__img(src=((product.purl)) alt="pic.jpg")
+                        span.shopitem__price $#{product.price}
+                        span.shopitem__text #{product.pdescription}
+                        div.shopitem__links
+                            if (isAdmin === false)
+                                form(action="/shop/addtocart", method="post")
+                                    a(href="/product/"+product.pid).btn.btn-primary Know More
+                                    input(type="hidden", name="productid",value=(product.pid))
+                                    button(type="submit").btn.btn-primary Add to cart
+                            else
+                                
+                                a(href="/product/edit-product/"+product.pid+"?edit=true").btn.btn-primary Edit
+                                form(action="/product/delete-product/", method="post")
+                                    input(type="hidden", name="productid", value=(product.pid))
+                                    button(type="submit").btn.btn-primary Delete
+            else
+                h2 Oops No Products Available!

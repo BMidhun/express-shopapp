@@ -1,0 +1,17 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/product.css")
+
+block content
+     main
+        section.product
+            form(method="POST",action=(isEdit ? "/product/editproduct":"/product/postproduct") class="product-form")
+                input(type="text",placeholder="Enter Product Name", required, name="pname", value=(isEdit ? product.pname : '')).form-input-text
+                input(type="number",placeholder="Enter Product Price", required, name="price" step="0.01" value=(isEdit ? product.price : '')).form-input-text
+                input(type="text",placeholder="Enter Product Image URL", required, name="purl" value=(isEdit ? product.purl : '')).form-input-text
+                input(type="text",placeholder="Enter Product Description", required, name="pdescription", value=(isEdit ? product.pdescription : '')).form-input-text
+                if (isEdit === true)
+                    input(type="hidden", name="productid", value=product.pid)
+                button(type="submit").btn.btn-primary #{isEdit ? 'Update Product' : 'Add Product' }
+            

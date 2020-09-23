@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title ShopFest! | #{pageTitle}
+        link(rel="stylesheet", href="/styles/main.css")
+        block styles
+    body
+        nav.navbar
+            div
+                input.chkbox#sidebar(type="checkbox")
+                label.chkbox-label(for="sidebar")
+                    span.sidemenu-line
+                div.sidemenu
+                        ul.sidemenu__list
+                        li.sidemenu__item 
+                            a.sidemenu__link(href="/shop") Shop
+                        li.sidemenu__item 
+                            a.sidemenu__link(href="/shop/cart") Your Cart
+                        li.sidemenu__item 
+                            a.sidemenu__link(href="#") Your Orders
+                        li.sidemenu__item 
+                            a.sidemenu__link(href="/product/add-product") Add Products
+                        li.sidemenu__item 
+                            a.sidemenu__link(href="/product/admin") Edit Products
+            h2 SHOPFEST!                
+
+        block content
